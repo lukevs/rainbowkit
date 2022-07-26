@@ -21,9 +21,9 @@ type AccountStatus = ExtractString<ConnectButtonProps['accountStatus']>;
 type ChainStatus = ExtractString<ConnectButtonProps['chainStatus']>;
 
 const Example = () => {
-  const { openAccountModal } = useAccountModal();
-  const { openChainModal } = useChainModal();
-  const { openConnectModal } = useConnectModal();
+  const { accountModalOpen, openAccountModal } = useAccountModal();
+  const { chainModalOpen, openChainModal } = useChainModal();
+  const { connectModalOpen, openConnectModal } = useConnectModal();
 
   const { address, isConnected } = useAccount();
   const defaultProps = ConnectButton.__defaultProps;
@@ -221,8 +221,8 @@ const Example = () => {
 
       {isMounted && (
         <>
-          <div>
-            <h3 style={{ fontFamily: 'sans-serif' }}>Modal hooks</h3>
+          <div style={{ fontFamily: 'sans-serif' }}>
+            <h3>Modal hooks</h3>
             <div style={{ display: 'flex', gap: 12, paddingBottom: 12 }}>
               <button
                 disabled={!openConnectModal}
@@ -245,6 +245,11 @@ const Example = () => {
               >
                 Open account modal
               </button>
+            </div>
+            <div>
+              {connectModalOpen && <div>Connect modal open</div>}
+              {chainModalOpen && <div>Chain modal open</div>}
+              {accountModalOpen && <div>Account modal open</div>}
             </div>
           </div>
 
